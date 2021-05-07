@@ -1,0 +1,37 @@
+.dialogs{
+    display: grid;
+    /* grid-template-columns: 10fr 10fr; */
+    width: 100%;
+}
+
+
+.dialogsItems{
+    padding: 10px;
+    color:white;
+}
+
+.dialogsItems .active{
+    color:gold;
+}
+
+.dialog{
+}
+
+.dialog a{
+    color: white;
+    text-decoration: none;
+}
+
+.messages{
+    padding: 10px;
+}
+
+.message{
+    color:white;
+}
+
+.wrappMessage{
+    width: 100%;
+    display: grid;
+    grid-template-columns: 2fr 10fr;
+}

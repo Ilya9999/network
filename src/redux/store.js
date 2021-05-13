@@ -1,6 +1,6 @@
-import dialogsReducer from './dialogs-reducer '
+import dialogsReducer from './dialogs-reducer'
 import profileReducer from './profile-reducer'
-import sidebarReducer from './sidebar-reducer '
+import sidebarReducer from './sidebar-reducer'
 
 let store = {
     _state: {
@@ -49,11 +49,12 @@ let store = {
         this._callSubscriber = observer
     },
 
-
+    //Мы отслеживаем действия которые происходят в UI при помощи метода dispatch. Он Вызывает необходимые reducer-ы и они изменяют _state
     dispatch(action) {
         this._state.profilePage = profileReducer(this._state.profilePage, action)
         this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action)
         this._state.sidebar = sidebarReducer(this._state.sidebar, action)
+        //Уведомляем всех подписчиков о изменениях в _state
         this._callSubscriber(this._state)
     }
 }

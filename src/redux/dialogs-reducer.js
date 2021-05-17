@@ -14,22 +14,25 @@ let initialState = {
     placeholder: 'Send a message'
 
 }
- 
+
 const dialogsReducer = (state = initialState, action) => {
 
     switch (action.type) {
-        case ADD_MESSAGE:
+        case ADD_MESSAGE: 
             let newDialog = {
                 id: 10,
                 message: state.placeholder
             }
-            state.dialogs.push(newDialog)
-            state.placeholder = ''
-            return state
-        case UPDATE_NEW_MESSAGE_TEXT:
-            state.placeholder = action.newMessageTxt
-            return state
-
+            return {
+                ...state,
+                dialogs:[...state.dialogs, newDialog],
+                placeholder: ''
+            }
+            case UPDATE_NEW_MESSAGE_TEXT:
+            return {
+                ...state,
+                placeholder:action.newMessageTxt
+            }
         default:
             return state
 

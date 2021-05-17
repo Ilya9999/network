@@ -5,7 +5,7 @@ import DialogItem from './DialogItem/DialogsItem'
 
 const Dialogs = (props) => {
     
-    let diaologsElements = props.dialogs.map(d => <DialogItem name={d.name} id={d.id} message={d.message}/>)
+    let diaologsElements = props.dialogs.map(d => <DialogItem name={d.name} id={d.id} key={d.id} message={d.message}/>)
 
     let newDialog = React.createRef()
 

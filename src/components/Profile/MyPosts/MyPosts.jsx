@@ -4,7 +4,6 @@ import SinglePost from './Post/SinglePost'
 
 
 const MyPosts = (props) => {
-
     let postElement =
         props.posts.map(p => <SinglePost message={p.message} likeCount={p.likesCount} />)
 

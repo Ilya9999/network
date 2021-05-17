@@ -16,24 +16,16 @@ const App = (props) => {
     <div className='app-wrapper'>
       <Header />
       <div className='sidebar'>
-      <Navbar />
-      <Sidebar state={props.state.sidebar} dispatch={props.dispatch}/>
+        <Navbar />
+        {/* <Sidebar /> */}
       </div>
       <div className='app-wrapper-content'>
-      <Route path='/dialogs' render={() =>
-          <DialogsContainer store={props.store}/> 
-          } />
-        {/* <Route path='/dialogs' render={() =>
-          <Dialogs store={props.store}
-            state={props.state.dialogsPage}
-            dispatch={props.dispatch}
-            placeholder={props.placeholder}
-          /> 
-          } /> */}
-
+        <Route path='/dialogs' render={() =>
+          <DialogsContainer />
+        } />
         <Route path='/profile' render={() =>
-          <Profile store={props.store}  />} />
-          
+          <Profile />} />
+
         <Route path='/news' render={() => <News />} />
         <Route path='/music' render={() => <Music />} />
         <Route path='/settings' render={() => <Settings />} />

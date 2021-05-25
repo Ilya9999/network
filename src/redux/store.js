@@ -54,6 +54,7 @@ let store = {
         this._state.profilePage = profileReducer(this._state.profilePage, action)
         this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action)
         this._state.sidebar = sidebarReducer(this._state.sidebar, action)
+        this._state.users = UsersReducer(this._state.users, action)
         //Уведомляем всех подписчиков о изменениях в _state
         this._callSubscriber(this._state)
     }

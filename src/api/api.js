@@ -1,4 +1,5 @@
 import * as axios from 'axios'
+import { setUserProfile } from '../redux/profile-reducer'
 
 const instance = axios.create ({
 
@@ -10,6 +11,16 @@ const instance = axios.create ({
 
 })
 
+export const authAPI = {
+    getAuth () {
+        return instance.get(`auth/me`, {
+        }).then(response => {
+            return response.data
+        })
+    }
+    
+}
+
 export const usersAPI = {
     getUsers (currentPage = 1, pageSize = 5) {
         return instance.get(`users?page=${currentPage}&count=${pageSize}`)
@@ -19,14 +30,16 @@ export const usersAPI = {
     }
 }
 
-export const authAPI = {
-    getAuth () {
-        return instance.get(`auth/me`, {
-        }).then(response => {
-            return response.data
-        })
-    }
+export const profileAPI = {
     
+    getProfile(userId) {
+        if (!userId) {
+            userId = 2
+        }
+
+        return instance.get(`profile/` + userId)
+       
+    }
 }
 
 

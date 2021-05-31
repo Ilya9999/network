@@ -1,10 +1,19 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 import style from './Header.module.css'
 
-const Header = () => {
-    return <header className={style.header}>
-        <img src='https://img.icons8.com/clouds/2x/duolingo-logo.png'></img>
-    </header>
+const Header = (props) => {
+    return (
+        <header className={style.header}>
+            <img src='https://img.icons8.com/clouds/2x/duolingo-logo.png' />
+            <div className={style.loginBlock}>
+                {props.isAuth ? props.login
+                    : <NavLink to={'/login'}>Login</NavLink>}
+
+            </div>
+        </header>
+
+    )
 }
 
 export default Header;

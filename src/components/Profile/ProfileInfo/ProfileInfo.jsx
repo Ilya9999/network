@@ -1,4 +1,5 @@
 import React from 'react'
+
 import Prelaoder from '../../Preloader/Preloader'
 import style from './ProfileInfo.module.css'
 
@@ -10,7 +11,6 @@ const ProfileInfo = (props) => {
     
     let social = Object.values(props.profile.contacts)
 
-   
     
     return (
         <div>

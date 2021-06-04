@@ -35,11 +35,8 @@ export const usersAPI = {
 
     unfollow(userId) {
         return instance.delete(`follow/${userId}`)
-    }
-}
+    },
 
-export const profileAPI = {
-    
     getProfile(userId) {
         if (!userId) {
             userId = 2
@@ -48,6 +45,8 @@ export const profileAPI = {
         return instance.get(`profile/` + userId)
        
     }
+
+
 }
 
 

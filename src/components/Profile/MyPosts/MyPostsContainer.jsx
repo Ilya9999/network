@@ -5,7 +5,7 @@ import MyPosts from './MyPosts'
 
 let mapStateToProps = (state) => {
     return {
-        // profilePage: state.profilePage,
+        profilePage: state.profilePage,
         posts: state.profilePage.posts,
         newPostText: state.profilePage.newPostText
     }

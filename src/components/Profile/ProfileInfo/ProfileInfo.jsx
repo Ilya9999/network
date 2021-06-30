@@ -19,7 +19,9 @@ const ProfileInfo = (props) => {
             </div> */}
             <div className={style.descriptionBlock}>
                 <img src={props.profile.photos.small} />
-                <ProfileStatus status={"Hello my friends"} />
+
+                <ProfileStatus status={props.status} updateStatus={props.updateStatus}/>
+
                 <div>{props.profile.aboutMe}</div>
                 <span><h3>My Contacts</h3></span>
                 <div className={style.link}><a>{social}</a></div>

@@ -6,8 +6,9 @@ import MyPosts from './MyPosts/MyPosts'
 let Profile = (props) => {
     return (
         <>
-            <ProfileInfo profile={props.profile} />
-            {/* <MyPosts /> */}
+            <ProfileInfo profile={props.profile} status={props.status} 
+            updateStatus={props.updateStatus} />
+            <MyPosts posts={props.posts} />
         </>
     )
 }

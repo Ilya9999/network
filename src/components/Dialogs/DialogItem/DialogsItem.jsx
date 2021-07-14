@@ -9,7 +9,6 @@ const DialogItem = (props) => {
             <NavLink to={path}>
                 <div className={style.wrappMessage}>
                     <div>{props.name}</div>
-                    <div>{props.message}</div>
                 </div>
             </NavLink>
         </div>

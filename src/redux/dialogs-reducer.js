@@ -1,48 +1,40 @@
-const ADD_MESSAGE = 'ADD-MESSAGE'
-const UPDATE_NEW_MESSAGE_TEXT = 'UPDATE-NEW-MESSAGE-TEXT'
+const SEND_MESSAGE = 'SEND_MESSAGE';
 
 let initialState = {
     dialogs: [
-        { id: 1, name: 'John', message: 'Hi !' },
-        { id: 2, name: 'Alex', message: 'How are you' },
-        { id: 3, name: 'Michael', message: 'What about coffe ?' },
-        { id: 4, name: 'Karlos', message: 'How is your day ?' },
-        { id: 5, name: 'Ilya', message: 'I wan to tell you about my pet project' },
-        { id: 6, name: 'Dyma', message: 'Pleace , call me back , i have serious conversation' }
+        {id: 1, name: 'Dimych'},
+        {id: 2, name: 'Andrew'},
+        {id: 3, name: 'Sveta'},
+        {id: 4, name: 'Sasha'},
+        {id: 5, name: 'Viktor'},
+        {id: 6, name: 'Valera'}
     ],
+    messages: [
+        {id: 1, message: 'Hi'},
+        {id: 2, message: 'How is your it-kamasutra?'},
+        {id: 3, message: 'Yo'},
+        {id: 4, message: 'Yo'},
+        {id: 5, message: 'Yo'},
+        {id: 6, message: 'I did it !!!!'}
 
-    placeholder: 'Send a message'
-
-}
+    ]
+};
 
 const dialogsReducer = (state = initialState, action) => {
-
     switch (action.type) {
-        case ADD_MESSAGE: 
-            let newDialog = {
-                id: 10,
-                message: state.placeholder
-            }
+        case SEND_MESSAGE:
+            let body = action.newMessageBody;
             return {
                 ...state,
-                dialogs:[...state.dialogs, newDialog],
-                placeholder: ''
-            }
-            case UPDATE_NEW_MESSAGE_TEXT:
-            return {
-                ...state,
-                placeholder:action.newMessageTxt
-            }
+                messages: [...state.messages, {id: 6, message: body}]
+            };
         default:
-            return state
-
+            return state;
     }
-
 }
 
-export const addMessageCreator = () => ({ type: ADD_MESSAGE })
+export const sendMessageCreator = (newMessageBody) => ({type: SEND_MESSAGE, newMessageBody})
 
-export const updateNewMessageTextCreator = (text) =>
-    ({ type: UPDATE_NEW_MESSAGE_TEXT, newMessageTxt: text })
 
-export default dialogsReducer
+export default dialogsReducer; 
+

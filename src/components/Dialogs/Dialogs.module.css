@@ -1,11 +1,11 @@
-.dialogs{
+.wrapDialogs{
     display: grid;
-    /* grid-template-columns: 10fr 10fr; */
-    width: 100%;
+    grid-template-columns: 2fr 10fr; 
+    width: 100%; 
 }
 
 
-.dialogsItems{
+.dialogsItems, .messageItems{
     padding: 10px;
     color:white;
 }
@@ -14,8 +14,6 @@
     color:gold;
 }
 
-.dialog{
-}
 
 .dialog a{
     color: white;
@@ -30,8 +28,8 @@
     color:white;
 }
 
-.wrappMessage{
+/* .wrappMessage{
     width: 100%;
     display: grid;
     grid-template-columns: 2fr 10fr;
-}
+} */

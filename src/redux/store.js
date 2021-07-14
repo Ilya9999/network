@@ -23,7 +23,7 @@ let store = {
                 { id: 6, name: 'Dyma', message: 'Pleace , call me back , i have serious conversation' }
             ],
 
-            placeholder: 'Send a message'
+            newMessageBody: 'Send a message'
 
         },
 

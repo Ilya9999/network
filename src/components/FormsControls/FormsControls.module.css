@@ -1,0 +1,41 @@
+.formControl input,
+.formControl textarea{
+    min-height: 20px;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+    border: 2px solid rgb(73, 69, 69);
+    padding: 5px 15px;
+    font-size: 14px;
+    line-height: 1;
+}
+
+.error input,
+.error textarea{
+    border: 2px solid red;
+}
+
+.formControl, .error span {
+    font-size: 14px;
+    color: red;
+}
+ 
+.formControl, .error span:not(:last-child) {
+    margin-bottom: 10px;
+}
+
+.rememberCheck{
+    display: flex;
+    align-items: top;
+    /* line-height: 1; */
+}
+
+.formSummaryError {
+    border: 2px solid red;
+    padding:5px;
+    color:red;
+    display: inline-block;
+    margin-bottom: 15px;
+}

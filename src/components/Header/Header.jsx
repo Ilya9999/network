@@ -7,7 +7,8 @@ const Header = (props) => {
         <header className={style.header}>
             <img src='https://img.icons8.com/clouds/2x/duolingo-logo.png' />
             <div className={style.loginBlock}>
-                {props.isAuth ? props.login
+                {props.isAuth 
+                    ? <div>{props.login} - <button onClick={props.logout}>Log out</button></div>
                     : <NavLink to={'/login'}>Login</NavLink>}
 
             </div>

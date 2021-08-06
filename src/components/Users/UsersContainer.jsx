@@ -5,9 +5,9 @@ import {
   toggleIsFollowingProgress, requestUsers
 } 
 from '../../redux/users-reducer'
-import { getUsers, getPageSize, 
+import { getPageSize, 
   getTotalUsersCount, getCurrentPage, 
-  getIsFetching, getFollowingInProgress } 
+  getIsFetching, getFollowingInProgress, getUsers } 
 from '../../redux/users-selectors'
 import Users from './Users'
 import Preloader from '../Preloader/Preloader'
@@ -55,17 +55,6 @@ let mapStateToprops = (state) => {
     followingInProgress: getFollowingInProgress(state)
   }
 }
-
-// let mapStateToprops = (state) => {
-//   return {
-//     users: state.usersPage.users,
-//     pageSize: state.usersPage.pageSize,
-//     totalUsersCount: state.usersPage.totalUsersCount,
-//     currentPage: state.usersPage.currentPage,
-//     isFetching: state.usersPage.isFetching,
-//     followingInProgress: state.usersPage.followingInProgress
-//   }
-// }
 
 
 export default compose(

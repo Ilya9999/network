@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { PureComponent } from 'react'
 import style from './MyPosts.module.css'
 import SinglePost from './Post/SinglePost'
 import { Field, reduxForm } from 'redux-form'
@@ -22,25 +22,27 @@ let AddNewPostForm = (props) => {
 let AddNewPostFormRedux = reduxForm({ form: "ProfileAddNewPostForm" })(AddNewPostForm)
 
 
-const MyPosts = (props) => {
+const MyPosts = React.memo (props => {
+        let postElement = 
+        [...props.posts]
+        .reverse()
+        .map(p => <SinglePost message={p.message} likeCount={p.likesCount} key={p.id} />)
+        let newPostElement = React.createRef();
 
-    let postElement = props.posts.map(p => <SinglePost message={p.message} likeCount={p.likesCount} key={p.id} />)
-    let newPostElement = React.createRef();
+        let onAddPost = (values) => {
+            props.addPost(values.newPostText);
+        }
 
-    let onAddPost = (values) => {
-        props.addPost(values.newPostText);
-    }
-
-    return (
-        <div className={style.content}>
-            <h3>My posts</h3>
-            <AddNewPostFormRedux onSubmit={onAddPost} />
-            <div className={style.posts}>
-                {postElement}
+        return (
+            <div className={style.content}>
+                <h3>My posts</h3>
+                <AddNewPostFormRedux onSubmit={onAddPost} />
+                <div className={style.posts}>
+                    {postElement}
+                </div>
             </div>
-        </div>
-    )
-}
+        )
+})  
 
 
 export default MyPosts;

@@ -6,6 +6,7 @@ import { required, maxLengthCreator } from '../../utils/validators/validators'
 import styles from '../FormsControls/FormsControls.module.css'
 import { login } from '../../redux/auth-reducer '
 import { Redirect } from 'react-router'
+import { createField } from '../FormsControls/FormsControls'
 
 const Login = (props) => {
     const onSubmit = (formData) => {
@@ -24,26 +25,27 @@ const Login = (props) => {
     )
 }
 
-const LoginForm = (props) => {
+const LoginForm = ({ handleSubmit, error }) => {
     return (
-        <form onSubmit={props.handleSubmit}>
-            <div>
-                <Field type="text" placeholder={'Email'} name={'email'}
+        <form onSubmit={handleSubmit}>
+            {createField('Email', 'email', [required], Input)}
+            {createField('Password', 'password', [required], Input, { type: 'password' })}
+            {createField(null, 'rememberMe', null, Input, { type: 'checkbox' }, 'remember me')}
+            {/* <Field type="text" placeholder={'Email'} name={'email'}
                     validate={[required]}
-                    component={Input} />
-            </div>
-            <div>
+                    component={Input} /> */}
+            {/* <div>
                 <Field type="text" placeholder={'Password'} name={'password'} type={'password'}
                     validate={[required]}
                     component={Input} />
             </div>
             <div className={styles.rememberCheck}>
                 <Field type="checkbox" component={Input} name={'rememberMe'} /> remember me
-            </div>
+            </div> */}
 
-            {props.error &&
+            {error &&
                 <div className={styles.formSummaryError}>
-                    {props.error}
+                    {error}
                 </div>
             }
 

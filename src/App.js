@@ -1,19 +1,19 @@
-import React from 'react';
-import './App.css';
-import Navbar from './components/NavBar/Navbar';
-import ProfileContainer from './components/Profile/ProfileContainer';
-import News from './components/News/News';
-import Music from './components/Music/Music';
-import Settings from './components/Settings/Settings';
+import React from 'react'
+import './App.css'
+import Navbar from './components/NavBar/Navbar'
+import ProfileContainer from './components/Profile/ProfileContainer'
+import News from './components/News/News'
+import Music from './components/Music/Music'
+import Settings from './components/Settings/Settings'
 import { Route } from 'react-router-dom';
-import Sidebar from './components/Sidebar/Sidebar';
-import DialogsContainer from './components/Dialogs/DialogsContainer';
-import UsersContainer from './components/Users/UsersContainer';
-import HeaderContainer from './components/Header/HeaderContainer';
-import Login from './components/Login/Login';
+import Sidebar from './components/Sidebar/Sidebar'
+import DialogsContainer from './components/Dialogs/DialogsContainer'
+import UsersContainer from './components/Users/UsersContainer'
+import HeaderContainer from './components/Header/HeaderContainer'
+import Login from './components/Login/Login'
 import { initializeApp } from './redux/app-reducer '
-import { connect } from 'react-redux';
-import Prelaoder from './components/Preloader/Preloader';
+import { connect } from 'react-redux'
+import Prelaoder from './components/Preloader/Preloader'
 
 
 class App extends React.Component {

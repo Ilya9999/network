@@ -6,15 +6,12 @@ import './index.css'
 import App from './App'
 import { BrowserRouter } from 'react-router-dom'
 import { Provider } from 'react-redux'
+import SamuraiJSApp from './App'
 
 
     ReactDOM.render(
         <React.StrictMode>
-            <Provider localStore={store} store={store} >
-                <BrowserRouter>
-                    <App />
-                </BrowserRouter>
-            </Provider>
+            <SamuraiJSApp />
         </React.StrictMode>,
         document.getElementById('root')
     );

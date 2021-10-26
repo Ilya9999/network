@@ -1,6 +1,7 @@
 import React from 'react'
 import Paginator from '../../components/common/Paginator/Paginator'
 import User from './User'
+import Pagination from "react-js-pagination";
 
 let Users = ({ currentPage, onPageChanged, totalUsersCount, pageSize, users, ...props }) => {
 
@@ -16,8 +17,8 @@ let Users = ({ currentPage, onPageChanged, totalUsersCount, pageSize, users, ...
                 )
             }
 
-            <Paginator currentPage={currentPage} onPageChanged={onPageChanged}
-                totalUsersCount={totalUsersCount} pageSize={pageSize} />
+            <Pagination activePage={currentPage} onChange={onPageChanged}
+            totalItemsCount={totalUsersCount} pageRangeDisplayed={pageSize} />
 
         </div>
     )

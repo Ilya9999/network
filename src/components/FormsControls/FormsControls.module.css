@@ -39,3 +39,16 @@
     display: inline-block;
     margin-bottom: 15px;
 }
+
+.loginForm img{
+    margin: 10px 0;
+    display: block;
+}
+
+.formCheck div{
+    display: flex;
+}
+
+.loginForm .formCheck .formControl {
+    margin-right: 10px;
+}

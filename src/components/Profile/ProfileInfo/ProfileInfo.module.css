@@ -10,3 +10,26 @@
 .link{
   font-size: 18px;
 }
+
+.mainPhoto{
+  max-width: 150px;
+  max-height: 150px;
+  border-radius: 50%;
+}
+
+.contact{
+  padding-left: 20px;
+}
+
+.contact b{
+  padding-right: 10px;
+}
+
+.inlineControl{
+  display: flex;
+  margin:10px;
+}
+
+.formLabel{
+  margin-right: 10px;
+}

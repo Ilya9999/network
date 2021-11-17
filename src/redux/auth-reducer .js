@@ -26,9 +26,7 @@ const AuthReducer = (state = initialState, action) => {
 
         default:
             return state
-
     }
-
 }
 
 export const setAuthUserData = (userId, email, login, isAuth) => ({

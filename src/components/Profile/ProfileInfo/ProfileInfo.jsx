@@ -6,6 +6,7 @@ import ProfileStatus from './ProfileStatus'
 import userPhoto from '../../../assets/images/Default-user-photo.png'
 import ProfileStatusWithHooks from './ProfileStatusWithHooks'
 import ProfileDataForm from './ProfileDataForm'
+import cn from 'classnames'
 
 const ProfileInfo = ({ profile, status, updateStatus, isowner, savePhoto, saveProfile }) => {
     let [editMode, setEditMode] = useState(false)
@@ -39,7 +40,7 @@ const ProfileInfo = ({ profile, status, updateStatus, isowner, savePhoto, savePr
 
     return (
         <div>
-            <div className={style.background}>
+            <div className={cn(style.background, style.exampleOfClassNames)}>
                 <img src='https://i.redd.it/228r4jaqsmb31.jpg'></img>
             </div>
             <div className={style.descriptionBlock}>

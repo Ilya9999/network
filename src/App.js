@@ -14,9 +14,10 @@ import { connect } from 'react-redux'
 import Prelaoder from './components/Preloader/Preloader'
 import { compose } from 'redux'
 import store from './redux/redux-store'
-import { BrowserRouter } from 'react-router-dom'
+import { BrowserRouter, Redirect, Switch } from 'react-router-dom'
 import { Provider } from 'react-redux'
-import {WithSuspense} from './hoc/WithSuspense'
+import { WithSuspense } from './hoc/WithSuspense'
+import Error from './components/common/Paginator/Error'
 
 const DialogsContainer = React.lazy(() => import('./components/Dialogs/DialogsContainer'));
 const ProfileContainer = React.lazy(() => import('./components/Profile/ProfileContainer'));
@@ -40,21 +41,26 @@ class App extends React.Component {
           {/* <Sidebar /> */}
         </div>
         <div className='app-wrapper-content'>
-          <Route path='/dialogs' render={WithSuspense(DialogsContainer)} />
+          <Switch>
+            <Route exact path='/' render={() => <Redirect to={'/profile'} />} />
 
-          <Route path='/profile/:userId?' render={WithSuspense(ProfileContainer)}/>
+            <Route path='/dialogs' render={WithSuspense(DialogsContainer)} />
 
-          <Route path='/users' render={() =>
-            <UsersContainer />} />
+            <Route path='/profile/:userId?' render={WithSuspense(ProfileContainer)} />
 
-          <Route path='/login' render={() =>
-            <Login />} />
+            <Route path='/users' render={() =>
+              <UsersContainer />} />
 
-          <Route path='/news' render={() => <News />} />
-          <Route path='/music' render={() => <Music />} />
-          <Route path='/settings' render={() => <Settings />} />
+            <Route path='/login' render={() =>
+              <Login />} />
+
+            <Route path='/news' render={() => <News />} />
+            <Route path='/music' render={() => <Music />} />
+            <Route path='/settings' render={() => <Settings />} />
+            <Route exact path='*' render={() => <Error />} />
+          </Switch>
         </div>
-      </div>
+      </div >
     )
   }
 }

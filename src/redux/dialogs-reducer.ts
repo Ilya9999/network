@@ -1,5 +1,17 @@
+import { type } from 'os'
+
 const SEND_MESSAGE = 'SEND_MESSAGE';
 const DELETE_MESSAGE = 'DELETE_MESSAGE'
+
+type DiaologType = {
+    id:number | null,
+    name: string | null
+}
+
+type MessagesType = {
+    id:number | null,
+    message: string | null
+}
 
 let initialState = {
     dialogs: [
@@ -9,7 +21,7 @@ let initialState = {
         { id: 4, name: 'Sasha' },
         { id: 5, name: 'Viktor' },
         { id: 6, name: 'Valera' }
-    ],
+    ] as Array<DiaologType> ,
     messages: [
         { id: 1, message: 'Hi' },
         { id: 2, message: 'How is your it-kamasutra?' },
@@ -18,13 +30,15 @@ let initialState = {
         { id: 5, message: 'Yo' },
         { id: 6, message: 'I did it !!!!' }
 
-    ]
+    ] as Array<MessagesType>
 }
 
-const dialogsReducer = (state = initialState, action) => {
+export type InitialStateType = typeof initialState
+
+const dialogsReducer = (state = initialState, action: any): InitialStateType => {
     switch (action.type) {
         case SEND_MESSAGE:
-            let body = action.newMessageBody;
+            let body = action.newMessageBody
             let newUser = 'New User'
             return {
                 ...state,
@@ -39,8 +53,19 @@ const dialogsReducer = (state = initialState, action) => {
     }
 }
 
-export const sendMessageCreator = (newMessageBody) => ({ type: SEND_MESSAGE, newMessageBody })
-export const deleteMessage = (messagegId) => ({ type: DELETE_MESSAGE, messagegId })
+type sendMessageCreatorType = {
+    type: typeof SEND_MESSAGE,
+    newMessageBody: string
+}
+
+export const sendMessageCreator = (newMessageBody: string): sendMessageCreatorType => ({ type: SEND_MESSAGE, newMessageBody })
+
+type deleteMessageType = {
+    type: typeof DELETE_MESSAGE,
+    messagegId: number
+}
+
+export const deleteMessage = (messagegId: number): deleteMessageType => ({ type: DELETE_MESSAGE, messagegId })
 
 
 export default dialogsReducer;

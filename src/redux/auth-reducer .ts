@@ -6,21 +6,16 @@ const SET_USER_DATA = 'SET_USER_DATA'
 const UNFOLLOW = 'UNFOLLOW'
 const GET_CAPTCHA_URL_SUCCESS  = 'GET_CAPTCHA_URL_SUCCESS'
 
-export type InitialStateType = {
-    id: number | null
-    email: string | null
-    login: string | null,
-    isAuth: boolean,
-    captchaUrl:string | null
+
+let initialState = {
+    id: null as number | null,
+    email: null as string | null,
+    login: null as string | null,
+    isAuth: false,
+    captchaUrl:null as string | null //if null , then captcha if not required
 }
 
-let initialState: InitialStateType = {
-    id: null,
-    email: null,
-    login: null,
-    isAuth: false,
-    captchaUrl:null //if null , then captcha if not required
-}
+export type InitialStateType = typeof initialState
 
 const AuthReducer = (state = initialState, action: any): InitialStateType => {
     switch (action.type) {

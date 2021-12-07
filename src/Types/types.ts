@@ -37,5 +37,6 @@ export type UserType = {
     id:number,
     name:string,
     status:string,
-    photos: PostsType,
+    photos: PhotosType,
+    followed:boolean
 }

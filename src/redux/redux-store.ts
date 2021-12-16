@@ -5,7 +5,7 @@ import sidebarReducer from './sidebar-reducer'
 import UsersReducer from "./users-reducer"
 import AuthReducer from './auth-reducer '
 import AppReducer from './app-reducer '
-import thunkMiddleware from 'redux-thunk'
+import  thunkMiddleware from 'redux-thunk'
 import { reducer as formReducer } from 'redux-form'
 import { type } from 'os'
 

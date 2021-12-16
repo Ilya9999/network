@@ -1,5 +1,7 @@
-import * as axios from 'axios'
+import  axios from 'axios'
 import { follow } from '../redux/users-reducer'
+import { PostsType, ContactsType, PhotosType, ProfileType } from '../Types/types'
+import { type } from 'os'
 
 const instance = axios.create ({
 
@@ -11,29 +13,63 @@ const instance = axios.create ({
 
 })
 
+export enum ResultCodeEnum {
+    Success = 0, 
+    Error = 1,
+}
+
+export enum ResultCodeForCaptcha {
+    CaptchaIsRequired = 10
+}
+
+type GetAuthResponseType = {
+    data:{
+        id:number
+        email:string
+        login:string
+    }
+    resultCode:ResultCodeEnum
+    messages:Array<string>
+}
+
+type LoginResponseType = {
+    resultCode: ResultCodeEnum | ResultCodeForCaptcha 
+    messages:Array<string>
+    data:{
+        userId: number
+    }
+}
+
 export const authAPI = {
     getAuth () {
-        return instance.get(`auth/me`, {
+        return instance.get<GetAuthResponseType>(`auth/me`, {
         }).then(response => {
             return response.data
         })
     },
 
-    login (email, password, rememberMe = false, captcha = null) {
-        return instance.post(`auth/login`, { email, password, rememberMe, captcha })
+    login (email:string, password:string, rememberMe = false, captcha: null | string = null) {
+        return instance.post<LoginResponseType>(`auth/login`, { email, password, rememberMe, captcha })
+        .then(res => res.data)
     },
 
     logout () {
-        return instance.delete(`auth/login`)
+        return instance.delete<GetAuthResponseType>(`auth/login`)
     }
     
 }
 
+type GetCaptchaURLType = {
+    url:string
+}
+
 export const securityAPI = {
     getCaptchaUrl() {
-        return instance.get(`security/get-captcha-url`)
+        return instance.get<GetCaptchaURLType>(`security/get-captcha-url`)
     }
 }
+
+
 
 export const usersAPI = {
     getUsers (currentPage = 1, pageSize = 5) {
@@ -43,15 +79,15 @@ export const usersAPI = {
         })
     },
 
-    follow(userId) {
+    follow(userId:number) {
         return instance.post(`follow/${userId}`)
     },
 
-    unfollow(userId) {
+    unfollow(userId:number) {
         return instance.delete(`follow/${userId}`)
     },
 
-    getProfile(userId) {
+    getProfile(userId:number) {
         if (!userId) {
             userId = 2
         }
@@ -65,7 +101,7 @@ export const usersAPI = {
 
 export const profileAPI = {
 
-    getProfile(userId) {
+    getProfile(userId:number) {
         if (!userId) {
             userId = 2
         }
@@ -74,15 +110,15 @@ export const profileAPI = {
        
     }, 
 
-    getStatus(userId) {
+    getStatus(userId:number) {
         return instance.get(`profile/status/` + userId)
     },
 
-    updateStatus(status) {
+    updateStatus(status:string) {
         return instance.put(`profile/status/`, {status:status})
     },
 
-    savePhoto(photoFile){
+    savePhoto(photoFile:any){
         const formData = new FormData()
         formData.append('image', photoFile)
         return instance.put(`profile/photo/`, formData, {
@@ -92,7 +128,7 @@ export const profileAPI = {
         })
     },
 
-    saveProfile(profile){
+    saveProfile(profile:ProfileType){
         return instance.put(`profile/`, profile)
     }
 

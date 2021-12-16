@@ -40,3 +40,4 @@ export type UserType = {
     photos: PhotosType,
     followed:boolean
 }
+

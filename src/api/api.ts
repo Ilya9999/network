@@ -1,6 +1,6 @@
 import  axios from 'axios'
 import { follow } from '../redux/users-reducer'
-import { PostsType, ContactsType, PhotosType, ProfileType } from '../Types/types'
+import { PostsType, ContactsType, PhotosType, ProfileType, UserType } from '../Types/types'
 import { type } from 'os'
 
 const instance = axios.create ({
@@ -70,10 +70,16 @@ export const securityAPI = {
 }
 
 
+type GetUsersResponseType = {
+    items:Array<UserType>
+    totalCount:number
+    error: null | string
+}
+
 
 export const usersAPI = {
     getUsers (currentPage = 1, pageSize = 5) {
-        return instance.get(`users?page=${currentPage}&count=${pageSize}`)
+        return instance.get<GetUsersResponseType>(`users?page=${currentPage}&count=${pageSize}`)
         .then(response => {
             return response.data
         })

@@ -47,13 +47,14 @@ type LoginFormValuesType = {
     captcha: string
 }
 
-
-type LoginFormValuesTypeKeys = keyof LoginFormValuesType
+// Exrtact method allowed to you choosing from keyses only string type keys.
+type LoginFormValuesTypeKeys = Extract<keyof LoginFormValuesType, string>
 
 const LoginForm: React.FC<InjectedFormProps<LoginFormValuesType, LoginFormOwnProps> & LoginFormOwnProps > 
     = ({ handleSubmit, error, captchaUrl }) => {
     return (
         <form onSubmit={handleSubmit} className={styles.loginForm}>
+            {/* LoginFormValuesTypeKeys this is generic it shows correct types for createField. The main purpose of generic warning your mistakes.  */}
             {createField<LoginFormValuesTypeKeys>('Email', 'email', [required], Input)}
             {createField<LoginFormValuesTypeKeys>('Password', 'password', [required], Input, { type: 'password' })}
             <div className={styles.formCheck}>

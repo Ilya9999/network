@@ -6,7 +6,7 @@ import { required, maxLengthCreator } from '../../utils/validators/validators'
 import styles from '../FormsControls/FormsControls.module.css'
 import { login } from '../../redux/auth-reducer '
 import { Redirect } from 'react-router'
-import { createField } from '../FormsControls/FormsControls'
+import { createField} from '../FormsControls/FormsControls'
 import { type } from 'os'
 import { AppStateType } from '../../redux/redux-store'
 
@@ -21,13 +21,6 @@ type MapStateToPropsType = {
 
 type MapDispatchToPropsType = {
     login: (email: string, password:string, rememberMe: boolean, captcha: any) => void
-}
-
-type LoginFormValuesType = { 
-    email:string
-    password:string
-    rememberMe:boolean
-    captcha: string
 }
 
 const Login: React.FC<MapStateToPropsType & MapDispatchToPropsType> = (props) => {
@@ -47,18 +40,28 @@ const Login: React.FC<MapStateToPropsType & MapDispatchToPropsType> = (props) =>
     )
 }
 
+type LoginFormValuesType = { 
+    email:string
+    password:string
+    rememberMe:boolean
+    captcha: string
+}
+
+
+type LoginFormValuesTypeKeys = keyof LoginFormValuesType
+
 const LoginForm: React.FC<InjectedFormProps<LoginFormValuesType, LoginFormOwnProps> & LoginFormOwnProps > 
     = ({ handleSubmit, error, captchaUrl }) => {
     return (
         <form onSubmit={handleSubmit} className={styles.loginForm}>
-            {createField('Email', 'email', [required], Input)}
-            {createField('Password', 'password', [required], Input, { type: 'password' })}
+            {createField<LoginFormValuesTypeKeys>('Email', 'email', [required], Input)}
+            {createField<LoginFormValuesTypeKeys>('Password', 'password', [required], Input, { type: 'password' })}
             <div className={styles.formCheck}>
-                {createField(undefined, 'rememberMe', [] , Input, { type: 'checkbox' }, 'remember me')}
+                {createField<LoginFormValuesTypeKeys>(undefined, 'rememberMe', [] , Input, { type: 'checkbox' }, 'remember me')}
             </div>
 
             {captchaUrl && <img src={captchaUrl}/> }
-            {captchaUrl && createField('Enter symbols from img', 'captcha', [required], Input, {}) }
+            {captchaUrl && createField<LoginFormValuesTypeKeys>('Enter symbols from img', 'captcha', [required], Input, {}) }
 
             {error &&
                 <div className={styles.formSummaryError}>

@@ -19,7 +19,7 @@ export type ContactsType = {
 }
 
 export type PhotosType = {
-    small: string | null, 
+    small: string | null
     large:string | null
 }
 

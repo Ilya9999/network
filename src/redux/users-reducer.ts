@@ -1,5 +1,5 @@
 import { AppStateType } from './redux-store';
-import { usersAPI } from '../api/api'
+import { usersAPI } from '../api/users-api'
 import { updateObjectInArray } from '../utils/validators/object-helpers'
 import { type } from 'os'
 import { PostsType, ContactsType, PhotosType, ProfileType, UserType } from '../Types/types'

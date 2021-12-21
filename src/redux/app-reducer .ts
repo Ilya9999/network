@@ -1,4 +1,4 @@
-import { authAPI } from '../api/api'
+import { authAPI } from '../api/auth-api'
 import { stopSubmit } from 'redux-form'
 import { type } from 'os';
 import { authUser } from './auth-reducer '

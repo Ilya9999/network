@@ -1,8 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import {
-  follow, unfollow, setCurrentPage,
-  toggleIsFollowingProgress, requestUsers
+  follow, unfollow, requestUsers
 } 
 from '../../redux/users-reducer'
 import { getPageSize, 
@@ -26,9 +25,8 @@ type MapStatePropsTypes = {
   totalUsersCount:number
 }
 
-type MapDispaatchPropsTypes = {
+type MapDispatchPropsTypes = {
   requestUsers:(currentPage:number, pageSize:number) => void
-  setCurrentPage: (pageNumber:number) => void
   follow: (userId:number) => void
   unfollow: (userId:number) => void
 }
@@ -37,7 +35,7 @@ type OwnPropsTypes = {
   pageTitle:string
 }
 
-type PropsTypes = MapStatePropsTypes & MapDispaatchPropsTypes & OwnPropsTypes
+type PropsTypes = MapStatePropsTypes & MapDispatchPropsTypes & OwnPropsTypes
 
 class UsersContainer extends React.Component<PropsTypes> {
 
@@ -50,10 +48,8 @@ class UsersContainer extends React.Component<PropsTypes> {
   onPageChanged = (pageNumber: number) => {
     const {pageSize} = this.props
     this.props.requestUsers(pageNumber, pageSize)
-    this.props.setCurrentPage(pageNumber)
 
   }
-
 
   render() {
     return <>
@@ -85,9 +81,9 @@ let mapStateToprops = (state: AppStateType): MapStatePropsTypes  => {
 
 
 export default compose(
-  connect<MapStatePropsTypes, MapDispaatchPropsTypes, OwnPropsTypes, AppStateType>(mapStateToprops, {
+  connect<MapStatePropsTypes, MapDispatchPropsTypes, OwnPropsTypes, AppStateType>(mapStateToprops, {
 
-    follow, unfollow, requestUsers,setCurrentPage
+    follow, unfollow, requestUsers
 
   })
 )(UsersContainer)

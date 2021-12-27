@@ -1,19 +1,21 @@
+import { InferActionsTypes } from './redux-store';
 import { authAPI } from '../api/auth-api'
 import { stopSubmit } from 'redux-form'
 import { type } from 'os';
 import { authUser } from './auth-reducer '
 
-const INITIALIZED_SUCCESS = 'INITIALIZED_SUCCESS'
+const INITIALIZED_SUCCESS = 'SN/APP/INITIALIZED_SUCCESS'
 
-export type InitialStateType = {
-    initialized: boolean,
+let initialState = {
+    initialized: false
 }
 
-let initialState: InitialStateType = {
-    initialized: false,
-}
+export type InitialStateType = typeof initialState
 
-const AppReducer = (state = initialState, action: any): InitialStateType => {
+//функция InferActionsTypes автоматически выводит типы экшинов которые есть внутри редьюсера
+type ActionsType = InferActionsTypes<typeof actions>
+
+const AppReducer = (state = initialState, action: ActionsType): InitialStateType => {
     switch (action.type) {
         case INITIALIZED_SUCCESS:
             return {
@@ -28,17 +30,16 @@ const AppReducer = (state = initialState, action: any): InitialStateType => {
 
 }
 
-type InitializedSuccessActionType = {
-    type: typeof INITIALIZED_SUCCESS //'INITIALIZED_SUCCESS'
+export const actions = { 
+    initializedSuccess: () => ({ type: INITIALIZED_SUCCESS })
 }
 
-export const initializedSuccess = (): InitializedSuccessActionType => ({ type: INITIALIZED_SUCCESS })
 
 export const initializeApp = () => (dispatch: any) => {
     let promise = dispatch(authUser())
     Promise.all([promise])
         .then(() => {
-            dispatch(initializedSuccess())
+            dispatch(actions.initializedSuccess())
         })
 }
 

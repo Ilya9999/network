@@ -1,4 +1,5 @@
 import { type } from 'os'
+import { BaseThunkType, InferActionsTypes } from './redux-store';
 
 const SEND_MESSAGE = 'SEND_MESSAGE';
 const DELETE_MESSAGE = 'DELETE_MESSAGE'
@@ -33,9 +34,7 @@ let initialState = {
     ] as Array<MessagesType>
 }
 
-export type InitialStateType = typeof initialState
-
-const dialogsReducer = (state = initialState, action: any): InitialStateType => {
+const dialogsReducer = (state = initialState, action: ActionsType): InitialStateType => {
     switch (action.type) {
         case SEND_MESSAGE:
             let body = action.newMessageBody
@@ -53,20 +52,15 @@ const dialogsReducer = (state = initialState, action: any): InitialStateType => 
     }
 }
 
-type sendMessageCreatorType = {
-    type: typeof SEND_MESSAGE,
-    newMessageBody: string
+export const actions = {
+    sendMessage: (newMessageBody: string) => ({ type: SEND_MESSAGE, newMessageBody } as const),
+    deleteMessage: (messagegId: number) => ({ type: DELETE_MESSAGE, messagegId } as const)
 }
-
-export const sendMessageCreator = (newMessageBody: string): sendMessageCreatorType => ({ type: SEND_MESSAGE, newMessageBody })
-
-type deleteMessageType = {
-    type: typeof DELETE_MESSAGE,
-    messagegId: number
-}
-
-export const deleteMessage = (messagegId: number): deleteMessageType => ({ type: DELETE_MESSAGE, messagegId })
-
 
 export default dialogsReducer;
+
+export type InitialStateType = typeof initialState
+//функция InferActionsTypes автоматически выводит типы экшинов которые есть внутри редьюсера
+type ActionsType = InferActionsTypes<typeof actions>
+
 

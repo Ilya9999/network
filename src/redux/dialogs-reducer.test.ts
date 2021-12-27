@@ -1,5 +1,5 @@
 import dialogsReducer from './dialogs-reducer'
-import { sendMessageCreator, deleteMessage } from './dialogs-reducer'
+import { actions } from './dialogs-reducer'
 
 let state = {
     dialogs: [
@@ -23,7 +23,7 @@ let state = {
 
 test('lenght of arrays message and dialogs should be increase', () => {
     //1. test data
-    let action = sendMessageCreator('I`am a new message !')
+    let action = actions.sendMessageCreator('I`am a new message !')
     //2. action
     let newState = dialogsReducer(state, action)
     //3. expectation
@@ -32,7 +32,7 @@ test('lenght of arrays message and dialogs should be increase', () => {
 
 test('affter deleting messages lenght of messages array should be decrement', () => {
     //1. test data
-    let action = deleteMessage(1)
+    let action = actions.deleteMessage(1)
     //2. action
     let newState = dialogsReducer(state, action)
 

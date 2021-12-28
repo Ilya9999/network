@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { ComponentType } from 'react'
 import './App.css'
 import Navbar from './components/NavBar/Navbar'
 import News from './components/News/News'
@@ -18,11 +18,17 @@ import { BrowserRouter, Redirect, Switch } from 'react-router-dom'
 import { Provider } from 'react-redux'
 import { WithSuspense } from './hoc/WithSuspense'
 import Error from './components/common/Paginator/Error'
+import { AppStateType } from './redux/redux-store';
 
 const DialogsContainer = React.lazy(() => import('./components/Dialogs/DialogsContainer'));
 const ProfileContainer = React.lazy(() => import('./components/Profile/ProfileContainer'));
 
-class App extends React.Component {
+type MapPropstype = ReturnType<typeof mapStateToProps>
+type DispatchPropstype = {
+  initializeApp: () => void
+}
+
+class App extends React.Component<MapPropstype & DispatchPropstype> {
 
   componentDidMount() {
     this.props.initializeApp()
@@ -65,17 +71,17 @@ class App extends React.Component {
   }
 }
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state: AppStateType) => ({
   initialized: state.app.initialized
 })
 
-const AppContainer = compose(
+const AppContainer = compose<React.ComponentType>(
   withRouter,
   connect(mapStateToProps, { initializeApp }))(App)
 
 
-const SamuraiJSApp = (props) => {
-  return <Provider localStore={store} store={store} >
+const SamuraiJSApp: React.FC = () => {
+  return <Provider store={store} >
     <BrowserRouter>
       <AppContainer />
     </BrowserRouter>
